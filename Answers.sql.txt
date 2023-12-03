@@ -1,0 +1,51 @@
+Questions-
+1. Which manufacturer's planes had most no of flights? And how many flights?
+
+select manufacturer,count(*) no_of_flights from planes group by manufacturer order by no_of_flights desc limit 1 ;
+
+ manufacturer | no_of_flights |
++--------------+---------------+
+| BOEING       |          1630 |
+
+
+
+2. Which manufacturer's planes had most no of flying hours? And how many hours?
+
+
+ select manufacturer,sum(hour) from flights f,planes p where f.tailnum = p.tailnum group by manufacturer order by sum(hour) desc limit 1;
++------------------+-----------+
+| manufacturer     | sum(hour) |
++------------------+-----------+
+| BOEING           |     14301 |
+
+
+3. Which plane flew the most number of hours? And how many hours?
+
+ select model,sum(hour) from flights f,planes p where f.tailnum = p.tailnum group by manufacturer order by sum(hour) desc limit 1;
++-----------+-----------+
+| model     | sum(hour) |
++-----------+-----------+
+| 737-824   |     14301 |
+
+4. Which destination had most delay in flights?
+
+select manufacturer,sum(arr_delay) from flights f,planes p where f.tailnum = p.tailnum group by manufacturer order by sum(arr_delay) desc limit 1;
++--------------+----------------+
+| manufacturer | sum(arr_delay) |
++--------------+----------------+
+| EMBRAER      |          18025 |
+
+
+5. Which manufactures planes had covered most distance? And how much distance?
+
+select manufacturer,sum(distance) from flights f,planes p where f.tailnum = p.tailnum group by manufacturer order by sum(distance) desc limit 1;
+
++--------------+---------------+
+| manufacturer | sum(distance) |
++--------------+---------------+
+| BOEING       |       1644180 |
++--------------+---------------+
+
+6. Which airport had most flights on weekends?
+
+
